@@ -1,82 +1,64 @@
 
-# Input Validation Utility
+# OOP-Based Company System
 
-This project provides simple Python utility functions to validate user input, particularly names and email addresses. It demonstrates basic input validation through conditional checks and structured exception handling.
-
----
-
-## Functions
-
-### 1. `validate_name(name)`
-Validates a name to ensure it's not empty and does not contain any digits.
-
-#### Parameters:
-- `name` (str): The input name to validate.
-
-#### Returns:
-- `True` if valid (non-empty, no digits).
-- `False` if invalid.
-
-#### Example:
-```python
-validate_name("John")       # True
-validate_name("John123")    # False
-validate_name("")           # False
-```
+This project demonstrates a simple object-oriented Python application that simulates interactions between persons, employees, cars, and office management. It includes class relationships, encapsulation, and behavior modeling.
 
 ---
 
-### 2. `email_validation(email)`
-Validates an email address using simple `if` conditions without regular expressions. It checks for the presence and placement of `"@"` and `"."` and ensures there are no invalid sequences.
+## Classes Overview
 
-#### Parameters:
-- `email` (str): The email address to validate.
+### 1. `Person`
+Represents a general person with attributes for name, money, mood, and health. Includes methods to simulate common actions.
 
-#### Returns:
-- `True` if the email format is valid.
-- `False` if not.
-
-#### Rules Checked:
-- Email must not be empty.
-- Must contain both `"@"` and `"."`.
-- Cannot start or end with `"@"` or `"."`.
-- Cannot contain invalid sequences like `"@."`, `".@"`, `"@@"`, or `".."`.
-
-#### Example:
-```python
-email_validation("user@example.com")    # True
-email_validation("user@@example.com")   # False
-```
+#### Methods:
+- `sleep(hours)`: Updates mood based on hours of sleep.
+- `eat(meals)`: Sets health rate depending on meals consumed.
+- `buy(items)`: Deducts money when purchasing items and handles conditions for item buying.
 
 ---
 
-### 3. `valid_email(email)`
-Validates an email address using **nested `try-except-else`** blocks for better error handling and readability. Each validation rule raises a specific error message if the check fails.
+### 2. `Car`
+Represents a vehicle with fuel and velocity attributes. Supports traveling behavior.
 
-#### Parameters:
-- `email` (str): The email address to validate.
+#### Methods:
+- `run(velocity, distance)`: Simulates running the car at a given speed over a distance, considering fuel limits.
+- `stop(remaining_distance)`: Stops the car and reports whether the destination was reached or fuel ran out.
 
-#### Returns:
-- `True` if valid.
-- `False` if invalid (with printed error messages).
+---
 
-#### Example:
-```python
-valid_email("test@domain.com")      # True
-valid_email("test@@domain..com")    # False, prints reason
-```
+### 3. `Employee` (Inherits from `Person`)
+Extends `Person` to include employee-specific information and actions.
+
+#### Attributes:
+- `id`, `car`, `email`, `salary`, `distanceToWork`
+
+#### Methods:
+- `work(hours)`: Updates mood based on work hours.
+- `drive(distance, velocity)`: Drives the assigned car to a distance.
+- `refuel(gasAmount)`: Refuels the car, ensuring the fuel doesn't exceed 100%.
+- `send_mail(to, subject, body)`: Simulates sending an email from the employee.
+
+---
+
+### 4. `Office`
+Manages a list of employees and provides methods for common office operations.
+
+#### Methods:
+- `get_all_employees()`: Returns all employees in the office.
+- `get_employee(empid)`: Finds an employee by ID.
+- `hire(employee)`: Adds an employee to the office.
+- `fire(empid)`: Removes an employee by ID.
+- `calculate_lateness(empid, moveHour, velocity)`: Determines if an employee is late based on travel time and speed.
+- `deduct(empid, amount)`: Deducts a salary penalty.
+- `reward(empid, amount)`: Rewards an employee by increasing salary.
 
 ---
 
 ## Purpose
 
-This script is useful for:
-- Demonstrating how to structure simple input validation functions.
-- Comparing validation using `if-else` logic versus exception-based design.
-- Teaching beginner programmers the use of control flow and error handling in Python.
+This code can be used for:
+- Learning and practicing object-oriented programming concepts.
+- Simulating basic interactions in a company setting.
+- Understanding class inheritance and real-world behavior mapping.
 
----
 
-## License
-
-This code is free to use for educational and personal projects.
